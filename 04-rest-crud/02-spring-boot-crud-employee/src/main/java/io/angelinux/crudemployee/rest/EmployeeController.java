@@ -39,4 +39,21 @@ public class EmployeeController {
         Employee dbEmployee = employeeService.save(theNewEmployee);
         return dbEmployee;
     }
+
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee theUpdatedEmployee) {
+        Employee dbEmployee = employeeService.save(theUpdatedEmployee);
+        return dbEmployee;
+    }
+
+    @DeleteMapping("/employees/{idEmployee}")
+    public String deleteEmployee(@PathVariable int idEmployee) {
+        Employee e = employeeService.findById(idEmployee);
+        if (e == null) {
+            throw new RuntimeException("Employee id " + idEmployee + " not found");
+        }
+        employeeService.deleteById(idEmployee);
+
+        return "Successfully Deleted employee id: " + idEmployee;
+    }
 }
