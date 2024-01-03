@@ -3,10 +3,7 @@ package io.angelinux.crudemployee.rest;
 import io.angelinux.crudemployee.dao.EmployeeDAO;
 import io.angelinux.crudemployee.entity.Employee;
 import io.angelinux.crudemployee.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +30,13 @@ public class EmployeeController {
         }
 
         return theEmployee;
+    }
+
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee theNewEmployee) {
+        System.out.println("Received employee object:");
+        System.out.println(theNewEmployee);
+        Employee dbEmployee = employeeService.save(theNewEmployee);
+        return dbEmployee;
     }
 }
