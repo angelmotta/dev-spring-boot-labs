@@ -29,9 +29,14 @@ public class EmployeeRestController {
     @GetMapping("/employees/{employeeId}")
     public Employee getEmployee(@PathVariable int employeeId) {
 
-        Employee theEmployee = employeeService.findById(employeeId);
+        Employee theEmployee = null;
 
-        if (theEmployee == null) {
+        try {
+            theEmployee = employeeService.findById(employeeId);
+        } catch (Exception e) {
+            // TODO: generate custom NotFound Exception and handle it accordingly
+            System.out.println("Handle exception in controller");
+            System.out.println(e.getMessage());
             throw new RuntimeException("Employee id not found - " + employeeId);
         }
 
@@ -57,7 +62,7 @@ public class EmployeeRestController {
 
     @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee theEmployee) {
-
+        System.out.println("Update employee");
         Employee dbEmployee = employeeService.save(theEmployee);
 
         return dbEmployee;
@@ -68,10 +73,12 @@ public class EmployeeRestController {
     @DeleteMapping("/employees/{employeeId}")
     public String deleteEmployee(@PathVariable int employeeId) {
 
-        Employee tempEmployee = employeeService.findById(employeeId);
-        System.out.println("Controller: check result received from service layer");
-        // throw exception if null
-        if (tempEmployee == null) {
+        try {
+            Employee tempEmployee = employeeService.findById(employeeId);
+        } catch (Exception e) {
+            // TODO: generate custom NotFound Exception and handle it accordingly
+            System.out.println("Handle exception in controller");
+            System.out.println(e.getMessage());
             throw new RuntimeException("Employee id not found - " + employeeId);
         }
 
