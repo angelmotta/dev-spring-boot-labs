@@ -5,15 +5,21 @@ meta {
 }
 
 put {
-  url: http://localhost:8080/api/employees/6
+  url: http://localhost:8080/api/employees
   body: json
-  auth: none
+  auth: basic
+}
+
+auth:basic {
+  username: mary
+  password: test123
 }
 
 body:json {
   {
-    "firstName": "Angel",
-    "lastName": "Motta",
-    "email": "angelmotta@gmail.com"
+    "id": 6,
+    "firstName": "Piero",
+    "lastName": "Morales",
+    "email": "piero.morales@utec.edu.pe"
   }
 }

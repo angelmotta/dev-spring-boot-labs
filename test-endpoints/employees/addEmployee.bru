@@ -6,6 +6,19 @@ meta {
 
 post {
   url: http://localhost:8080/api/employees
-  body: none
-  auth: none
+  body: json
+  auth: basic
+}
+
+auth:basic {
+  username: susan
+  password: test123
+}
+
+body:json {
+  {
+    "firstName": "Angel",
+    "lastName": "Motta",
+    "email": "angelmotta@gmail.com"
+  }
 }

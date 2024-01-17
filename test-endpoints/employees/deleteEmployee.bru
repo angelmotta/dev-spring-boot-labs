@@ -5,7 +5,12 @@ meta {
 }
 
 delete {
-  url: http://localhost:8080/api/employees/2
+  url: http://localhost:8080/api/employees/10
   body: none
-  auth: none
+  auth: basic
+}
+
+auth:basic {
+  username: susan
+  password: test123
 }

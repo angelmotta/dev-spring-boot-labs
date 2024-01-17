@@ -1,5 +1,5 @@
 meta {
-  name: GetEmployees
+  name: GetAllEmployees
   type: http
   seq: 1
 }
@@ -7,5 +7,10 @@ meta {
 get {
   url: http://localhost:8080/api/employees
   body: none
-  auth: none
+  auth: basic
+}
+
+auth:basic {
+  username: john
+  password: test123
 }
